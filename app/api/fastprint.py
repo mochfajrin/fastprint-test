@@ -4,7 +4,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 
-def getFastPrintProducts():
+def get_products():
     dt = datetime.now(tz=ZoneInfo("Asia/Jakarta"))
     hour = '{:02d}'.format(dt.hour + 1)
     day = '{:02d}'.format(dt.day)

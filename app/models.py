@@ -20,16 +20,18 @@ class Status(models.Model):
 class Produk(models.Model):
     id_produk = models.BigAutoField(primary_key=True)
     nama_produk = models.CharField(255)
-    harga = models.DecimalField(max_digits=6, decimal_places=2)
+    harga = models.FloatField()
     kategori = models.ForeignKey(
         Kategori,
         on_delete=models.CASCADE,
-        blank=False
+        blank=False,
+        db_column="id_kategori"
     )
     status = models.ForeignKey(
         Status,
         on_delete=models.CASCADE,
-        blank=False
+        blank=False,
+        db_column="id_status"
     )
 
     class Meta:
