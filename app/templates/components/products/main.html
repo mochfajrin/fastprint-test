@@ -1,4 +1,13 @@
 <main id="main" class="main">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags == 'success' %} alert-success {% else %} alert-danger {% endif %}alert-dismissible fade show"
+        role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
     <div class="pagetitle">
         <h1>Data Produk</h1>
     </div>
@@ -81,7 +90,40 @@
                                             {{ product.status.nama_status }}
                                         </span>
                                     </td>
-                                    <td><a href="/products/edit/{{ product.id_produk }}">Edit</a></td>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a class="btn btn-sm btn-warning"
+                                                href="/products/edit/{{ product.id_produk }}">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDelete">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </button>
+                                            <div class="modal fade" id="confirmDelete" tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Konfirmasi Hapus Produk</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah anda yakin menghapus produk ini?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-primary"
+                                                                data-bs-dismiss="modal">tidak</button>
+                                                            <a class="btn btn-sm btn-danger"
+                                                                href="/products/delete/{{ product.id_produk }}">
+                                                                Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 {% endfor %}
                             </tbody>

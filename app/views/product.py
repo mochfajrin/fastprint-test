@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db.models import Max
+from django.contrib import messages
 from app.helper.fastprint import save_to_database
 from app.models import Produk
-from django.db.models import Max
 from app.forms import ProdukCreateForm, ProdukUpdateForm
 
 
@@ -31,6 +32,7 @@ def create(request):
             product = form.save(commit=False)
             product.id_produk = next_id
             product.save()
+            messages.success(request, "Berhasil membuat produk")
             return redirect("products")
     else:
         form = ProdukCreateForm()
@@ -68,6 +70,7 @@ def update(request, id_produk):
                 produk.status = status
 
             produk.save()
+            messages.success(request, "Berhasil memperbarui produk")
             return redirect('products')
     else:
         form = ProdukUpdateForm(initial={
@@ -79,11 +82,22 @@ def update(request, id_produk):
     return render(
         request,
         "pages/dashboard/products/edit.html",
-        {'form': form}
+        {
+            'form': form,
+            'id_produk': id_produk
+        }
     )
+
+
+def delete(request, id_produk):
+    product = get_object_or_404(Produk, id_produk=id_produk)
+    product.delete()
+    messages.success(request, "Berhasil menghapus produk")
+    return redirect("products")
 
 
 def fetch_products(request):
     if request.method == "GET":
         save_to_database()
+        messages.success(request, "Berhasil mengambil data dari API")
         return redirect('products')

@@ -1,12 +1,13 @@
 import requests
 import hashlib
-from datetime import datetime
+import datetime
 from zoneinfo import ZoneInfo
 
 
 def get_products():
-    dt = datetime.now(tz=ZoneInfo("Asia/Jakarta"))
-    hour = '{:02d}'.format(dt.hour + 1)
+    dt = datetime.datetime.now(tz=ZoneInfo(
+        "Asia/Jakarta")) + datetime.timedelta(hours=1)
+    hour = '{:02d}'.format(dt.hour)
     day = '{:02d}'.format(dt.day)
     month = '{:02d}'.format(dt.month)
     year = str(dt.year % 100).zfill(2)
@@ -20,6 +21,7 @@ def get_products():
         "username": username,
         "password": encrypted_password
     }
+
     data = requests.post(api_url, data).json()["data"]
 
     return data
