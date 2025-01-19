@@ -1,0 +1,62 @@
+<main id="main" class="main">
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Edit Produk</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Nama Produk</label>
+                        <div class="col-sm-10">
+                            {{ form.nama_produk }}
+                            {% if form.nama_produk.errors %}
+                            {% for error in form.nama_produk.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Harga</label>
+                        <div class="col-sm-10">
+                            {{ form.harga }}
+                            {% if form.harga.errors %}
+                            {% for error in form.harga.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Kategori</label>
+                        <div class="col-sm-10">
+                            {{ form.kategori }}
+                            {% if form.kategori.errors %}
+                            {% for error in form.kategori.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label">Status</label>
+                        <div class="col-sm-10">
+                            {{ form.status }}
+                            {% if form.status.errors %}
+                            {% for error in form.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-sm btn-primary">Perbarui Produk</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Hapus Produk</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>

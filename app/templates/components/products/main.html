@@ -1,0 +1,94 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <h1>Data Produk</h1>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card p-3">
+                    <div class="d-flex justify-content-between my-3">
+                        <div>
+                            <a href="/api/fastprint" class="btn btn-sm btn-danger">
+                                <i class="bi bi-download me-1"></i>
+                                Ambil Data Dari API
+                            </a>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <div class="nav-item dropdown pe-3">
+                                <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
+                                    data-bs-toggle="dropdown">
+                                    <button class="btn btn-sm btn-warning">
+                                        <i class="bi bi-filter me-1"></i>
+                                        Filter
+                                    </button>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center {% if meta.status == None %} disabled {% endif %}"
+                                            href="?">
+                                            Tampilkan Semua
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center {% if meta.status == '1' %} disabled {% endif %}"
+                                            href="?status=1">
+                                            Bisa dijual
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center {% if meta.status == '2' %} disabled {% endif %}"
+                                            href="?status=2">
+                                            Tidak bisa dijual
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="/products/create" class="btn btn-sm btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i>
+                                Produk Baru
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id Produk
+                                    </th>
+                                    <th>Nama Produk</th>
+                                    <th>Kategori</th>
+                                    <th>Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for product in products %}
+                                <tr>
+                                    <td class="text-center">{{ product.id_produk }}</td>
+                                    <td>{{ product.nama_produk }}</td>
+                                    <td>{{ product.kategori.nama_kategori }}</td>
+                                    <td>
+                                        <span
+                                            class="badge rounded-pill 
+                                            {% if product.status_id == 1 %} bg-success {% else %} bg-danger {% endif %}">
+                                            {{ product.status.nama_status }}
+                                        </span>
+                                    </td>
+                                    <td><a href="/products/edit/{{ product.id_produk }}">Edit</a></td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

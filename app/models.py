@@ -2,24 +2,31 @@ from django.db import models
 
 
 class Kategori(models.Model):
-    id_kategori = models.BigIntegerField(primary_key=True)
+    id_kategori = models.BigIntegerField(
+        primary_key=True, editable=False, unique=True, db_index=True)
     nama_kategori = models.CharField(255)
+
+    def __str__(self):
+        return self.nama_kategori
 
     class Meta:
         db_table = "kategori"
 
 
 class Status(models.Model):
-    id_status = models.BigIntegerField(primary_key=True)
+    id_status = models.BigIntegerField(primary_key=True, db_index=True)
     nama_status = models.CharField(255)
+
+    def __str__(self):
+        return self.nama_status
 
     class Meta:
         db_table = "status"
 
 
 class Produk(models.Model):
-    id_produk = models.BigAutoField(primary_key=True)
-    nama_produk = models.CharField(255)
+    id_produk = models.BigAutoField(primary_key=True, db_index=True)
+    nama_produk = models.CharField()
     harga = models.FloatField()
     kategori = models.ForeignKey(
         Kategori,
