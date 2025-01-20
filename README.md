@@ -44,6 +44,7 @@ cp .env.example .env
 
 ```sh
 # DATABASE CONFIG
+
 DB_NAME=
 DB_USER=
 DB_PASSWORD=
@@ -54,6 +55,9 @@ DB_PORT=
 ### Run Database Migration
 
 ```sh
+# apabila migration gagal karena value dari .env tidak terbarui
+# tutup dan buat terminal baru
+
 python manage.py makemigrations
 python manage.py migrate
 ```
