@@ -1,0 +1,60 @@
+<main id="main" class="main">
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">Edit Status</h5>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                            data-bs-target="#confirmDelete">
+                            <i class="bi bi-trash-fill"></i> Hapus Status
+                        </button>
+                        <div class="modal fade" id="confirmDelete" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Konfirmasi Hapus Status</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Apakah anda yakin menghapus status ini?
+                                        <p class="text-danger">
+                                            *Semua produk dengan status ini akan dihapus
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-primary"
+                                            data-bs-dismiss="modal">tidak</button>
+                                        <a class="btn btn-sm btn-danger" href="/status/delete/{{ id_status }}">
+                                            Hapus
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Nama Status</label>
+                        <div class="col-sm-10">
+                            {{ form.nama_status }}
+                            {% if form.nama_status.errors %}
+                            {% for error in form.nama_status.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-sm btn-primary">Perbarui Status</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>

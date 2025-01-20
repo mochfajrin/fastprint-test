@@ -104,3 +104,71 @@ class ProdukUpdateForm(forms.ModelForm):
             "kategori",
             "status",
         ]
+
+
+class KategoriCreateForm(forms.ModelForm):
+    nama_kategori = forms.CharField(min_length=3, max_length=255, widget=forms.TextInput(attrs={
+        'placeholder': "Masukkan nama kategori",
+        'class': "form-control",
+    }), error_messages={
+        'required': "Nama kategori harus diisi",
+        "max_length": "Nama kategori maksimal 255 karakter",
+        "max_length": "Nama kategori minimal 3 karakter",
+    })
+
+    class Meta:
+        model = Kategori
+        fields = [
+            "nama_kategori",
+        ]
+
+
+class KategoriUpdateForm(forms.ModelForm):
+    nama_kategori = forms.CharField(required=False, min_length=3, max_length=255, widget=forms.TextInput(attrs={
+        'placeholder': "Masukkan nama kategori",
+        'class': "form-control",
+    }), error_messages={
+        'required': "Nama kategori harus diisi",
+        "max_length": "Nama kategori maksimal 255 karakter",
+        "max_length": "Nama kategori minimal 3 karakter",
+    })
+
+    class Meta:
+        model = Kategori
+        fields = [
+            "nama_kategori",
+        ]
+
+
+class StatusCreateForm(forms.ModelForm):
+    nama_status = forms.CharField(min_length=3, max_length=255, widget=forms.TextInput(attrs={
+        'placeholder': "Masukkan nama status",
+        'class': "form-control",
+    }), error_messages={
+        'required': "Nama status harus diisi",
+        "max_length": "Nama status maksimal 255 karakter",
+        "max_length": "Nama status minimal 3 karakter",
+    })
+
+    class Meta:
+        model = Status
+        fields = [
+            "nama_status",
+        ]
+
+
+class StatusUpdateForm(forms.ModelForm):
+    nama_status = forms.CharField(required=False, min_length=3, max_length=255, widget=forms.TextInput(attrs={
+        'placeholder': "Masukkan nama status",
+        'class': "form-control",
+    }), error_messages={
+        'required': "Nama status harus diisi",
+        "max_length": "Nama status maksimal 255 karakter",
+        "max_length": "Nama status minimal 3 karakter",
+    })
+
+    class Meta:
+        model = Status
+        fields = [
+            "nama_status",
+        ]

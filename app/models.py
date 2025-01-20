@@ -2,8 +2,8 @@ from django.db import models
 
 
 class Kategori(models.Model):
-    id_kategori = models.BigIntegerField(
-        primary_key=True, editable=False, unique=True, db_index=True)
+    id_kategori = models.BigAutoField(
+        primary_key=True, unique=True, db_index=True)
     nama_kategori = models.CharField(255)
 
     def __str__(self):
@@ -14,7 +14,7 @@ class Kategori(models.Model):
 
 
 class Status(models.Model):
-    id_status = models.BigIntegerField(primary_key=True, db_index=True)
+    id_status = models.BigAutoField(primary_key=True, db_index=True)
     nama_status = models.CharField(255)
 
     def __str__(self):

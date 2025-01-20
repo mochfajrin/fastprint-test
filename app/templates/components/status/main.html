@@ -1,0 +1,91 @@
+<main id="main" class="main">
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags == 'success' %} alert-success {% else %} alert-danger {% endif %}alert-dismissible fade show"
+        role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+    <div class="pagetitle">
+        <h1>Data Status</h1>
+    </div>
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card p-3">
+                    <div class="d-flex justify-content-end my-3">
+                        <div class="d-flex flex-row">
+                            <a href="/status/create" class="btn btn-sm btn-primary">
+                                <i class="bi bi-plus-circle me-1"></i>
+                                Status Baru
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Id Status
+                                    </th>
+                                    <th>Nama Status</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for stat in status %}
+                                <tr>
+                                    <td class="text-center">{{ stat.id_status }}</td>
+                                    <td>{{ stat.nama_status }}</td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <a class="btn btn-sm btn-warning mx-2"
+                                                href="/status/edit/{{ stat.id_status }}">
+                                                <i class="bi bi-pencil-square"></i>
+                                                Sunting
+                                            </a>
+                                            <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#confirmDelete-{{ stat.id_status }}">
+                                                <i class="bi bi-trash-fill"></i>
+                                                Hapus
+                                            </button>
+                                            <div class="modal fade" id="confirmDelete-{{ stat.id_status }}"
+                                                tabindex="-1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title">Konfirmasi Hapus Status</h5>
+                                                            <button type="button" class="btn-close"
+                                                                data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            Apakah anda yakin menghapus status ini?
+                                                            <p class="text-danger">
+                                                                *Semua produk dengan status ini akan dihapus
+                                                            </p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-sm btn-primary"
+                                                                data-bs-dismiss="modal">tidak</button>
+                                                            <a class="btn btn-sm btn-danger"
+                                                                href="/status/delete/{{ stat.id_status }}">
+                                                                Hapus
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

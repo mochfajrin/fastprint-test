@@ -50,7 +50,7 @@ def update(request, id_produk):
     produk = get_object_or_404(Produk, id_produk=id_produk)
 
     if request.method == "POST":
-        form = ProdukCreateForm(request.POST)
+        form = ProdukUpdateForm(request.POST)
 
         if form.is_valid():
             nama_produk = form.cleaned_data["nama_produk"]

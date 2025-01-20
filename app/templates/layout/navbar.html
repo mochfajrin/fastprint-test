@@ -60,5 +60,17 @@
                     <span>Produk</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path != '/categories' %} collapsed {% endif %}" href="/categories">
+                    <i class="bi bi-tag-fill"></i>
+                    <span>Kategori</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {% if request.path != '/status' %} collapsed {% endif %}" href="/status">
+                    <i class="bi bi-card-text"></i>
+                    <span>Status</span>
+                </a>
+            </li>
         </ul>
     </aside>

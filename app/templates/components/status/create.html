@@ -1,0 +1,27 @@
+<main id="main" class="main">
+    <section class="section">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Buat Status Baru</h5>
+                <form method="post" action="">
+                    {% csrf_token %}
+                    <div class="row mb-3">
+                        <label for="inputText" class="col-sm-2 col-form-label">Nama Status</label>
+                        <div class="col-sm-10">
+                            {{ form.nama_status }}
+                            {% if form.nama_status.errors %}
+                            {% for error in form.nama_status.errors %}
+                            <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Buat Status</button>
+                            </div>
+                        </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</main>
