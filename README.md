@@ -34,6 +34,12 @@ pip install -r requirements.txt
 CREATE DATABASE <YOUR_DATABASE_NAME>;
 ```
 
+### Create .env file
+
+```sh
+cp .env.example .env
+```
+
 ### Configure .Env
 
 ```sh
